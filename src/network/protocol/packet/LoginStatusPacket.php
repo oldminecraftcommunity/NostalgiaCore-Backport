@@ -4,7 +4,7 @@ class LoginStatusPacket extends RakNetDataPacket{
 	public $status;
 	
 	public function pid(){
-		return ProtocolInfo::LOGIN_STATUS_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::LOGIN_STATUS_PACKET;
 	}
 	
 	public function decode(){

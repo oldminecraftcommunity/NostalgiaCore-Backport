@@ -9,7 +9,7 @@ class ContainerOpenPacket extends RakNetDataPacket{
 	public $z;
 	
 	public function pid(){
-		return ProtocolInfo::CONTAINER_OPEN_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_OPEN_PACKET;
 	}
 	
 	public function decode(){

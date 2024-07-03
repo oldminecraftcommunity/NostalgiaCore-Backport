@@ -8,7 +8,7 @@ class ExplodePacket extends RakNetDataPacket{
 	public $records;
 	
 	public function pid(){
-		return ProtocolInfo::EXPLODE_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::EXPLODE_PACKET;
 	}
 	
 	public function decode(){

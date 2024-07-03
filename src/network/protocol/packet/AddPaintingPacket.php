@@ -9,7 +9,7 @@ class AddPaintingPacket extends RakNetDataPacket{
 	public $title;
 	
 	public function pid(){
-		return ProtocolInfo::ADD_PAINTING_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::ADD_PAINTING_PACKET;
 	}
 	
 	public function decode(){

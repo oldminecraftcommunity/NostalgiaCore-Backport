@@ -10,7 +10,7 @@ class StartGamePacket extends RakNetDataPacket{
 	public $z;
 	
 	public function pid(){
-		return ProtocolInfo::START_GAME_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::START_GAME_PACKET;
 	}
 	
 	public function decode(){

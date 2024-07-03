@@ -4,7 +4,7 @@ class ChatPacket extends RakNetDataPacket{
 	public $message;
 	
 	public function pid(){
-		return ProtocolInfo::CHAT_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::CHAT_PACKET;
 	}
 	
 	public function decode(){

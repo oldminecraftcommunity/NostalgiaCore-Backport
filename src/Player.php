@@ -1163,12 +1163,12 @@ class Player{
 								}
 								switch($p->pid()){
 									case 0x01:
-									case ProtocolInfo::PING_PACKET:
-									case ProtocolInfo::PONG_PACKET:
-									case ProtocolInfo::MOVE_PLAYER_PACKET:
-									case ProtocolInfo::REQUEST_CHUNK_PACKET:
-									case ProtocolInfo::ANIMATE_PACKET:
-									case ProtocolInfo::SET_HEALTH_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::PING_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::PONG_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::MOVE_PLAYER_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::REQUEST_CHUNK_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::ANIMATE_PACKET:
+									case ProtocolInfo::getCurrentProtocolInfo()::SET_HEALTH_PACKET:
 										break;
 								}
 							}
@@ -1305,7 +1305,7 @@ class Player{
 			$len += strlen($move->buffer) + 1;
 			++$packets;
 			$moveSent = true;
-		}else if($e->headYaw != $e->lastHeadYaw){
+		}else if(ProtocolInfo::$CURRENT_PROTOCOL > 12 && $e->headYaw != $e->lastHeadYaw){
 			$headyaw = new RotateHeadPacket();
 			$headyaw->eid = $e->eid;
 			$headyaw->yaw = $e->headYaw;
@@ -1468,18 +1468,18 @@ class Player{
 		switch($packet->pid()){
 			case 0x01:
 				break;
-			case ProtocolInfo::PONG_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PONG_PACKET:
 				break;
-			case ProtocolInfo::PING_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PING_PACKET:
 				$pk = new PongPacket;
 				$pk->ptime = $packet->time;
 				$pk->time = abs(microtime(true) * 1000);
 				$this->directDataPacket($pk);
 				break;
-			case ProtocolInfo::DISCONNECT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::DISCONNECT_PACKET:
 				$this->close("client disconnect");
 				break;
-			case ProtocolInfo::CLIENT_CONNECT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::CLIENT_CONNECT_PACKET:
 				if($this->loggedIn === true){
 					break;
 				}
@@ -1489,12 +1489,12 @@ class Player{
 				$pk->session2 = Utils::readLong("\x00\x00\x00\x00\x04\x44\x0b\xa9");
 				$this->dataPacket($pk);
 				break;
-			case ProtocolInfo::CLIENT_HANDSHAKE_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::CLIENT_HANDSHAKE_PACKET:
 				if($this->loggedIn === true){
 					break;
 				}
 				break;
-			case ProtocolInfo::LOGIN_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::LOGIN_PACKET:
 				if($this->loggedIn === true){
 					break;
 				}
@@ -1505,8 +1505,8 @@ class Player{
 					$this->close("server is full!", false);
 					return;
 				}
-				if($packet->protocol1 !== ProtocolInfo::CURRENT_PROTOCOL){
-					if($packet->protocol1 < ProtocolInfo::CURRENT_PROTOCOL){
+				if($packet->protocol1 !== ProtocolInfo::$CURRENT_PROTOCOL){
+					if($packet->protocol1 < ProtocolInfo::$CURRENT_PROTOCOL){
 						$pk = new LoginStatusPacket;
 						$pk->status = 1;
 						$this->directDataPacket($pk);
@@ -1665,7 +1665,7 @@ class Player{
 				
 				console("[INFO] " . FORMAT_AQUA . $this->username . FORMAT_RESET . "[/" . $this->ip . ":" . $this->port . "] logged in with entity id " . $this->eid . " at (" . $this->entity->level->getName() . ", " . round($this->entity->x, 2) . ", " . round($this->entity->y, 2) . ", " . round($this->entity->z, 2) . ")");
 				break;
-			case ProtocolInfo::READY_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::READY_PACKET:
 				if($this->loggedIn === false){
 					break;
 				}
@@ -1705,7 +1705,7 @@ class Player{
 						break;
 				}
 				break;
-			case ProtocolInfo::ROTATE_HEAD_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::ROTATE_HEAD_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -1719,7 +1719,7 @@ class Player{
 					}
 				}
 				break;
-			case ProtocolInfo::MOVE_PLAYER_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::MOVE_PLAYER_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -1746,7 +1746,7 @@ class Player{
 					$this->entity->updateAABB();
 				}
 				break;
-			case ProtocolInfo::PLAYER_EQUIPMENT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_EQUIPMENT_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -1818,12 +1818,12 @@ class Player{
 					$this->entity->updateMetadata();
 				}
 				break;
-			case ProtocolInfo::REQUEST_CHUNK_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::REQUEST_CHUNK_PACKET:
 				//console("request x:".$packet->chunkX.", z: ".$packet->chunkZ." chunk");
 				//$this->useChunk($packet->chunkX, $packet->chunkZ);
 				//$this->lastChunk = [$packet->chunkX, $packet->chunkZ];
 				break;
-			case ProtocolInfo::USE_ITEM_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::USE_ITEM_PACKET:
 				if(!($this->entity instanceof Entity)){
 					break;
 				}
@@ -1952,7 +1952,7 @@ class Player{
 					}
 				}
 				break;
-			case ProtocolInfo::PLAYER_ACTION_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_ACTION_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2024,7 +2024,7 @@ class Player{
 						$this->stopSleep();
 				}
 				break;
-			case ProtocolInfo::REMOVE_BLOCK_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::REMOVE_BLOCK_PACKET:
 				$blockVector = new Vector3($packet->x, $packet->y, $packet->z);
 				if($this->spawned === false or $this->blocked === true or $this->entity->distance($blockVector) > 8){
 					$target = $this->level->getBlock($blockVector);
@@ -2042,7 +2042,7 @@ class Player{
 				$this->toCraft = [];
 				$this->server->api->block->playerBlockBreak($this, $blockVector);
 				break;
-			case ProtocolInfo::PLAYER_ARMOR_EQUIPMENT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_ARMOR_EQUIPMENT_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2081,7 +2081,7 @@ class Player{
 					$this->entity->updateMetadata();
 				}
 				break;
-			case ProtocolInfo::INTERACT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::INTERACT_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -2103,14 +2103,14 @@ class Player{
 				}
 
 				break;
-			case ProtocolInfo::ANIMATE_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::ANIMATE_PACKET:
 				if($this->spawned === false){
 					break;
 				}
 				$packet->eid = $this->eid;
 				$this->server->api->dhandle("entity.animate", ["eid" => $packet->eid, "entity" => $this->entity, "action" => $packet->action]);
 				break;
-			case ProtocolInfo::RESPAWN_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::RESPAWN_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -2147,9 +2147,9 @@ class Player{
 				$this->blocked = false;
 				$this->server->handle("player.respawn", $this);
 				break;
-			case ProtocolInfo::SET_HEALTH_PACKET: //Not used
+			case ProtocolInfo::getCurrentProtocolInfo()::SET_HEALTH_PACKET: //Not used
 				break;
-			case ProtocolInfo::ENTITY_EVENT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::ENTITY_EVENT_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2183,7 +2183,7 @@ class Player{
 						break;
 				}
 				break;
-			case ProtocolInfo::DROP_ITEM_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::DROP_ITEM_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2215,7 +2215,7 @@ class Player{
 					$this->entity->updateMetadata();
 				}
 				break;
-			case ProtocolInfo::MESSAGE_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::MESSAGE_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -2252,7 +2252,7 @@ class Player{
 					}
 				}
 				break;
-			case ProtocolInfo::CONTAINER_CLOSE_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_CLOSE_PACKET:
 				if($this->spawned === false){
 					break;
 				}
@@ -2285,7 +2285,7 @@ class Player{
 				$pk->windowid = $packet->windowid;
 				$this->dataPacket($pk);
 				break;
-			case ProtocolInfo::CONTAINER_SET_SLOT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_SLOT_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2440,12 +2440,12 @@ class Player{
 					$tile->setSlot($packet->slot, $item);
 				}
 				break;
-			case ProtocolInfo::SEND_INVENTORY_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::SEND_INVENTORY_PACKET:
 				if($this->spawned === false){
 					break;
 				}
 				break;
-			case ProtocolInfo::ENTITY_DATA_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::ENTITY_DATA_PACKET:
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
@@ -2467,7 +2467,7 @@ class Player{
 					}
 				}
 				break;
-			case ProtocolInfo::PLAYER_INPUT_PACKET:
+			case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_INPUT_PACKET:
 				$this->isJumping = $packet->isJumping;
 				$this->isSneaking = $packet->isSneaking;
 				$this->entity->moveForward = $packet->moveForward;

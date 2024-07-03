@@ -14,7 +14,7 @@ class EntityEventPacket extends RakNetDataPacket{
 	}
 	
 	public function pid(){
-		return ProtocolInfo::ENTITY_EVENT_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::ENTITY_EVENT_PACKET;
 	}
 	
 	public function decode(){

@@ -4,7 +4,7 @@ class SetHealthPacket extends RakNetDataPacket{
 	public $health;
 	
 	public function pid(){
-		return ProtocolInfo::SET_HEALTH_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::SET_HEALTH_PACKET;
 	}
 	
 	public function decode(){

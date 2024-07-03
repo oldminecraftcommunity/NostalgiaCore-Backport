@@ -91,7 +91,8 @@ class PocketMinecraftServer{
 			"experimental-mob-ai" => false,	
 			"force-20-tps" => false,
 			"enable-mob-pushing" => Living::$entityPushing,
-			"keep-chunks-loaded" => self::$KEEP_CHUNKS_LOADED
+			"keep-chunks-loaded" => self::$KEEP_CHUNKS_LOADED,
+			"protocol" => 14
 		]);
 		Player::$smallChunks = $this->extraprops->get("16x16x16_chunk_sending");
 		Living::$despawnMobs = $this->extraprops->get("despawn-mobs");
@@ -103,6 +104,8 @@ class PocketMinecraftServer{
 		MobController::$ADVANCED = $this->extraprops->get("experimental-mob-ai");
 		Explosion::$enableExplosions = $this->extraprops->get("enable-explosions");
 		NetherReactorBlock::$enableReactor = $this->extraprops->get("enable-nether-reactor");
+		ProtocolInfo::$CURRENT_PROTOCOL = (int)$this->extraprops->get("protocol");
+		console("[INFO] Running on protocol: " . ProtocolInfo::$CURRENT_PROTOCOL);
 		if(self::$FORCE_20_TPS){
 			ConsoleAPI::warn("Forcing 20 tps. This may result in higher CPU usage!");
 		}
@@ -690,7 +693,7 @@ class PocketMinecraftServer{
 			$dump .= "$line\r\n";
 		}
 		$dump .= "\r\n\r\n";
-		$dump .= "NostalgiaCore version: " . MAJOR_VERSION . " [Protocol " . ProtocolInfo::CURRENT_PROTOCOL . "; API " . CURRENT_API_VERSION . "]\r\n";
+		$dump .= "NostalgiaCore version: " . MAJOR_VERSION . " [Protocol " . ProtocolInfo::$CURRENT_PROTOCOL . "; API " . CURRENT_API_VERSION . "]\r\n";
 		$dump .= "Git commit: " . GIT_COMMIT . "\r\n";
 		$dump .= "Source SHA1 sum: " . SOURCE_SHA1SUM . "\r\n";
 		$dump .= "uname -a: " . php_uname("a") . "\r\n";

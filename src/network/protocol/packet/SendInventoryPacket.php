@@ -7,7 +7,7 @@ class SendInventoryPacket extends RakNetDataPacket{
 	public $armor = array();
 	
 	public function pid(){
-		return ProtocolInfo::SEND_INVENTORY_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::SEND_INVENTORY_PACKET;
 	}
 	
 	public function decode(){

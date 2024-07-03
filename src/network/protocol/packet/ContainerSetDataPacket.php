@@ -6,7 +6,7 @@ class ContainerSetDataPacket extends RakNetDataPacket{
 	public $value;
 	
 	public function pid(){
-		return ProtocolInfo::CONTAINER_SET_DATA_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_DATA_PACKET;
 	}
 	
 	public function decode(){

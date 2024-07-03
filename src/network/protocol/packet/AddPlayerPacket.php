@@ -25,7 +25,7 @@ class AddPlayerPacket extends RakNetDataPacket{
 	public $metadata;
 	
 	public function pid(){
-		return ProtocolInfo::ADD_PLAYER_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::ADD_PLAYER_PACKET;
 	}
 	
 	public function decode(){

@@ -8,7 +8,7 @@ class LoginPacket extends RakNetDataPacket{
 	public $loginData;
 	
 	public function pid(){
-		return ProtocolInfo::LOGIN_PACKET;
+		return ProtocolInfo::getCurrentProtocolInfo()::LOGIN_PACKET;
 	}
 	
 	public function decode(){
