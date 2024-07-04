@@ -218,7 +218,7 @@ class Level{
 						$v16 = ($y + 1) - LiquidBlock::getPercentAir($meta);
 						if($maxY >= $v16){
 							$appliedVelocity = true;
-							Block::$class[$block]::addVelocityToEntity($this, $x, $y, $z, $entity, $velocityVec);
+							StaticBlock::$prealloc[$block]::addVelocityToEntity($this, $x, $y, $z, $entity, $velocityVec);
 						}
 						
 					}
@@ -256,7 +256,7 @@ class Level{
 				for($y = $y0 - 1; $y < $y1; ++$y) {
 					$bid = $this->level->getBlockID($x, $y, $z);
 					if($bid > 0){
-						$blockBounds = Block::$class[$bid]::getCollisionBoundingBoxes($this, $x, $y, $z, $e); //StaticBlock::getBoundingBoxForBlockCoords($b, $x, $y, $z);
+						$blockBounds = StaticBlock::$prealloc[$bid]::getCollisionBoundingBoxes($this, $x, $y, $z, $e); //StaticBlock::getBoundingBoxForBlockCoords($b, $x, $y, $z);
 						
 						foreach($blockBounds as $blockBound){
 							if($aABB->intersectsWith($blockBound)) $aABBs[] = $blockBound;
@@ -410,11 +410,11 @@ class Level{
 				foreach($this->changedBlocks as $i => $blocks){
 					foreach($blocks as $b){
 						$pk = new UpdateBlockPacket;
-						$pk->x = $b[0];
-						$pk->y = $b[1];
-						$pk->z = $b[2];
-						$pk->block = $b[3];
-						$pk->meta = $b[4];
+						$pk->x = ($b >> 32) & 0xff;
+						$pk->y = ($b >> 24) & 0xff;
+						$pk->z = ($b >> 16) & 0xff;
+						$pk->block =($b >> 8) & 0xff;
+						$pk->meta = $b & 0xff;
 						$this->server->api->player->broadcastPacket($this->players, $pk);
 					}
 					unset($this->changedBlocks[$i]);
@@ -453,7 +453,7 @@ class Level{
 					$this->changedBlocks[$i] = [];
 					$this->changedCount[$i] = 0;
 				}
-				$this->changedBlocks[$i][] = [$block->x, $block->y, $block->z, $block->id, $block->getMetadata()];
+				$this->changedBlocks[$i][] = ($block->x & 0xff) << 32 | ($block->y & 0xff) << 24 | ($block->z & 0xff) << 16 | ($block->getID() & 0xff) << 8 | ($block->meta & 0xff);
 				++$this->changedCount[$i];
 			}
 		}
@@ -512,7 +512,7 @@ class Level{
 					$y = ($xyz >> 16) & 0x7f;
 					$id = $this->level->fastGetBlockID($cX, $y >> 4, $cZ, $x, $y & 0xf, $z, $index);
 					if(isset(self::$randomUpdateBlocks[$id])){
-						$cl = Block::$class[$id];
+						$cl = StaticBlock::$prealloc[$id];
 						$cl::onRandomTick($this, ($cX << 4) + $x, $y, $z + ($cZ << 4));
 					}
 				}
@@ -720,7 +720,7 @@ class Level{
 					$this->changedBlocks[$i] = [];
 					$this->changedCount[$i] = 0;
 				}
-				$this->changedBlocks[$i][] = [$block->x, $block->y, $block->z, $block->id, $block->getMetadata()];
+				$this->changedBlocks[$i][] = ($block->x & 0xff) << 32 | ($block->y & 0xff) << 24 | ($block->z & 0xff) << 16 | ($block->getID() & 0xff) << 8 | ($block->meta & 0xff);
 				++$this->changedCount[$i];
 			}
 			
