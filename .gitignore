@@ -1,3 +1,7 @@
+###############
+#NostalgiaCore#
+###############
+
 players/*
 worlds/*
 plugins/*
@@ -8,11 +12,11 @@ bin/*
 *.pmf
 *.txt
 *.properties
+_ProtocolInfo_gen.php
 
-
-############
-## Windows
-############
+###########
+##Windows##
+###########
 
 # Windows image file caches
 Thumbs.db
