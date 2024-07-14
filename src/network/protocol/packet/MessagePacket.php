@@ -5,7 +5,7 @@ class MessagePacket extends RakNetDataPacket{
 	public $message;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::MESSAGE_PACKET;
+		return ProtocolInfo::MESSAGE_PACKET;
 	}
 	
 	public function decode(){

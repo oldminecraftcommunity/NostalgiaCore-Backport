@@ -4,7 +4,7 @@ class RemoveEntityPacket extends RakNetDataPacket{
 	public $eid;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::REMOVE_ENTITY_PACKET;
+		return ProtocolInfo::REMOVE_ENTITY_PACKET;
 	}
 	
 	public function decode(){

@@ -6,7 +6,7 @@ class ContainerSetContentPacket extends RakNetDataPacket{
 	public $hotbar = array();
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_CONTENT_PACKET;
+		return ProtocolInfo::CONTAINER_SET_CONTENT_PACKET;
 	}
 	
 	public function decode(){

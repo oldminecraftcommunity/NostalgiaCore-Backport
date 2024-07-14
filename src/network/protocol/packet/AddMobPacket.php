@@ -11,7 +11,7 @@ class AddMobPacket extends RakNetDataPacket{
 	public $metadata;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::ADD_MOB_PACKET;
+		return ProtocolInfo::ADD_MOB_PACKET;
 	}
 	
 	public function decode(){

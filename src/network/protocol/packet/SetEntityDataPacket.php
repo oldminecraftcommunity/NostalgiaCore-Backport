@@ -5,7 +5,7 @@ class SetEntityDataPacket extends RakNetDataPacket{
 	public $metadata;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_DATA_PACKET;
+		return ProtocolInfo::SET_ENTITY_DATA_PACKET;
 	}
 	
 	public function decode(){

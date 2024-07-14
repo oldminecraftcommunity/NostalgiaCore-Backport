@@ -1,7 +1,5 @@
 <?php
-
-
-abstract class ProtocolInfo{
+/*abstract class ProtocolInfo{
 
 	public static $CURRENT_PROTOCOL = 14;
 	public static function getCurrentProtocolInfo(){
@@ -15,7 +13,7 @@ abstract class ProtocolInfo{
 		}
 	}
 
-}
+}*/
 /***REM_START***/
 require_once(FILE_PATH . "src/network/raknet/RakNetDataPacket.php");
 /***REM_END***/

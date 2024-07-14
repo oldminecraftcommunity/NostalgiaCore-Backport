@@ -4,7 +4,7 @@ class HurtArmorPacket extends RakNetDataPacket{
 	public $health;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::HURT_ARMOR_PACKET;
+		return ProtocolInfo::HURT_ARMOR_PACKET;
 	}
 	
 	public function decode(){

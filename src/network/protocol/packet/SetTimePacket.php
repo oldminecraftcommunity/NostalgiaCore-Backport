@@ -5,7 +5,7 @@ class SetTimePacket extends RakNetDataPacket{
 	public $started = true;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::SET_TIME_PACKET;
+		return ProtocolInfo::SET_TIME_PACKET;
 	}
 	
 	public function decode(){

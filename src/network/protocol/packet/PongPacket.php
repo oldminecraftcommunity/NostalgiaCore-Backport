@@ -5,7 +5,7 @@ class PongPacket extends RakNetDataPacket{
 	public $ptime = 0;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::PONG_PACKET;
+		return ProtocolInfo::PONG_PACKET;
 	}
 	
 	public function decode(){

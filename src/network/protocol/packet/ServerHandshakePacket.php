@@ -6,7 +6,7 @@ class ServerHandshakePacket extends RakNetDataPacket{
 	public $session2;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::SERVER_HANDSHAKE_PACKET;
+		return ProtocolInfo::SERVER_HANDSHAKE_PACKET;
 	}
 	
 	public function decode(){

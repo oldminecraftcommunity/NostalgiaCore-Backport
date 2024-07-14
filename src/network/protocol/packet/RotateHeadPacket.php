@@ -11,7 +11,7 @@ class RotateHeadPacket extends RakNetDataPacket{
 	 */
 	public $rawYaw = false;
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::ROTATE_HEAD_PACKET;
+		return ProtocolInfo::ROTATE_HEAD_PACKET;
 	}
 	
 	public function decode(){

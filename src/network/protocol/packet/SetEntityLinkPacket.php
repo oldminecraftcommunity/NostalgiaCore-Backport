@@ -23,7 +23,7 @@ class SetEntityLinkPacket extends RakNetDataPacket{
 
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_LINK_PACKET;
+		return ProtocolInfo::SET_ENTITY_LINK_PACKET;
 	}
 
 }

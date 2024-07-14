@@ -9,7 +9,7 @@ class InteractPacket extends RakNetDataPacket{
 	public $target;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::INTERACT_PACKET;
+		return ProtocolInfo::INTERACT_PACKET;
 	}
 	
 	public function decode(){

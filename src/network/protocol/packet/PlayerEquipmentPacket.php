@@ -7,7 +7,7 @@ class PlayerEquipmentPacket extends RakNetDataPacket{
 	public $slot;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::PLAYER_EQUIPMENT_PACKET;
+		return ProtocolInfo::PLAYER_EQUIPMENT_PACKET;
 	}
 	
 	public function decode(){

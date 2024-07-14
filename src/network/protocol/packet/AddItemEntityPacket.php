@@ -11,7 +11,7 @@ class AddItemEntityPacket extends RakNetDataPacket{
 	public $roll;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::ADD_ITEM_ENTITY_PACKET;
+		return ProtocolInfo::ADD_ITEM_ENTITY_PACKET;
 	}
 	
 	public function decode(){
