@@ -6,7 +6,7 @@ class ClientConnectPacket extends RakNetDataPacket{
 	public $unknown1;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::CLIENT_CONNECT_PACKET;
+		return ProtocolInfo::CLIENT_CONNECT_PACKET;
 	}
 	
 	public function decode(){

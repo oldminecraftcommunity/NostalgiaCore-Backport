@@ -104,8 +104,16 @@ class PocketMinecraftServer{
 		MobController::$ADVANCED = $this->extraprops->get("experimental-mob-ai");
 		Explosion::$enableExplosions = $this->extraprops->get("enable-explosions");
 		NetherReactorBlock::$enableReactor = $this->extraprops->get("enable-nether-reactor");
-		ProtocolInfo::$CURRENT_PROTOCOL = (int)$this->extraprops->get("protocol");
+		$proto = (int) $this->extraprops->get("protocol");
+		
+		$_tmp = fopen(FILE_PATH."/_ProtocolInfo_gen.php", "w");
+		$paste = fopen(FILE_PATH."/src/network/protocol/_NOINC_ProtocolInfo$proto.php", "r");
+		fwrite($_tmp, stream_get_contents($paste));
+		fclose($_tmp);
+		include(FILE_PATH."/_ProtocolInfo_gen.php");
+		ProtocolInfo::$CURRENT_PROTOCOL = $proto;
 		console("[INFO] Running on protocol: " . ProtocolInfo::$CURRENT_PROTOCOL);
+		
 		if(self::$FORCE_20_TPS){
 			ConsoleAPI::warn("Forcing 20 tps. This may result in higher CPU usage!");
 		}

@@ -5,7 +5,7 @@ class RemovePlayerPacket extends RakNetDataPacket{
 	public $clientID;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::REMOVE_PLAYER_PACKET;
+		return ProtocolInfo::REMOVE_PLAYER_PACKET;
 	}
 	
 	public function decode(){

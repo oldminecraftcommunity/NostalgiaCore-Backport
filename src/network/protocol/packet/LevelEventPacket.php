@@ -12,7 +12,7 @@ class LevelEventPacket extends RakNetDataPacket{
 	public $data;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::LEVEL_EVENT_PACKET;
+		return ProtocolInfo::LEVEL_EVENT_PACKET;
 	}
 	
 	public function decode(){

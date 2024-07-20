@@ -9,7 +9,7 @@ class PlayerActionPacket extends RakNetDataPacket{
 	public $eid;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::PLAYER_ACTION_PACKET;
+		return ProtocolInfo::PLAYER_ACTION_PACKET;
 	}
 	
 	public function decode(){

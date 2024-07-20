@@ -6,7 +6,7 @@ class DropItemPacket extends RakNetDataPacket{
 	public $item;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::DROP_ITEM_PACKET;
+		return ProtocolInfo::DROP_ITEM_PACKET;
 	}
 	
 	public function decode(){

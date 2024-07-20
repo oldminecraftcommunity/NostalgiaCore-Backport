@@ -7,7 +7,7 @@ class SetEntityMotionPacket extends RakNetDataPacket{
 	public $speedZ;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_MOTION_PACKET;
+		return ProtocolInfo::SET_ENTITY_MOTION_PACKET;
 	}
 	
 	public function decode(){

@@ -8,7 +8,7 @@ class TileEventPacket extends RakNetDataPacket{
 	public $case2;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::TILE_EVENT_PACKET;
+		return ProtocolInfo::TILE_EVENT_PACKET;
 	}
 	
 	public function decode(){

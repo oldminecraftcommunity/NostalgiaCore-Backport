@@ -164,168 +164,168 @@ class RakNetParser{
 				return false;
 			}
 			switch($pid){
-				case ProtocolInfo::getCurrentProtocolInfo()::PING_PACKET:
+				case ProtocolInfo::PING_PACKET:
 					$data = new PingPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::PONG_PACKET:
+				case ProtocolInfo::PONG_PACKET:
 					$data = new PongPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CLIENT_CONNECT_PACKET:
+				case ProtocolInfo::CLIENT_CONNECT_PACKET:
 					$data = new ClientConnectPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SERVER_HANDSHAKE_PACKET:
+				case ProtocolInfo::SERVER_HANDSHAKE_PACKET:
 					$data = new ServerHandshakePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::DISCONNECT_PACKET:
+				case ProtocolInfo::DISCONNECT_PACKET:
 					$data = new DisconnectPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::LOGIN_PACKET:
+				case ProtocolInfo::LOGIN_PACKET:
 					$data = new LoginPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::LOGIN_STATUS_PACKET:
+				case ProtocolInfo::LOGIN_STATUS_PACKET:
 					$data = new LoginStatusPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::READY_PACKET:
+				case ProtocolInfo::READY_PACKET:
 					$data = new ReadyPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::MESSAGE_PACKET:
+				case ProtocolInfo::MESSAGE_PACKET:
 					$data = new MessagePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_TIME_PACKET:
+				case ProtocolInfo::SET_TIME_PACKET:
 					$data = new SetTimePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::START_GAME_PACKET:
+				case ProtocolInfo::START_GAME_PACKET:
 					$data = new StartGamePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADD_MOB_PACKET:
+				case ProtocolInfo::ADD_MOB_PACKET:
 					$data = new AddMobPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADD_PLAYER_PACKET:
+				case ProtocolInfo::ADD_PLAYER_PACKET:
 					$data = new AddPlayerPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::REMOVE_PLAYER_PACKET:
+				case ProtocolInfo::REMOVE_PLAYER_PACKET:
 					$data = new RemovePlayerPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADD_ENTITY_PACKET:
+				case ProtocolInfo::ADD_ENTITY_PACKET:
 					$data = new AddEntityPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::REMOVE_ENTITY_PACKET:
+				case ProtocolInfo::REMOVE_ENTITY_PACKET:
 					$data = new RemoveEntityPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADD_ITEM_ENTITY_PACKET:
+				case ProtocolInfo::ADD_ITEM_ENTITY_PACKET:
 					$data = new AddItemEntityPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::TAKE_ITEM_ENTITY_PACKET:
+				case ProtocolInfo::TAKE_ITEM_ENTITY_PACKET:
 					$data = new TakeItemEntityPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::MOVE_ENTITY_PACKET:
+				case ProtocolInfo::MOVE_ENTITY_PACKET:
 					$data = new MoveEntityPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::MOVE_ENTITY_PACKET_POSROT:
+				case ProtocolInfo::MOVE_ENTITY_PACKET_POSROT:
 					$data = new MoveEntityPacket_PosRot;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ROTATE_HEAD_PACKET:
+				case ProtocolInfo::ROTATE_HEAD_PACKET:
 					$data = new RotateHeadPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::MOVE_PLAYER_PACKET:
+				case ProtocolInfo::MOVE_PLAYER_PACKET:
 					$data = new MovePlayerPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::REMOVE_BLOCK_PACKET:
+				case ProtocolInfo::REMOVE_BLOCK_PACKET:
 					$data = new RemoveBlockPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::UPDATE_BLOCK_PACKET:
+				case ProtocolInfo::UPDATE_BLOCK_PACKET:
 					$data = new UpdateBlockPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADD_PAINTING_PACKET:
+				case ProtocolInfo::ADD_PAINTING_PACKET:
 					$data = new AddPaintingPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::EXPLODE_PACKET:
+				case ProtocolInfo::EXPLODE_PACKET:
 					$data = new ExplodePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::LEVEL_EVENT_PACKET:
+				case ProtocolInfo::LEVEL_EVENT_PACKET:
 					$data = new LevelEventPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::TILE_EVENT_PACKET:
+				case ProtocolInfo::TILE_EVENT_PACKET:
 					$data = new TileEventPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ENTITY_EVENT_PACKET:
+				case ProtocolInfo::ENTITY_EVENT_PACKET:
 					$data = new EntityEventPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::REQUEST_CHUNK_PACKET:
+				case ProtocolInfo::REQUEST_CHUNK_PACKET:
 					$data = new RequestChunkPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CHUNK_DATA_PACKET:
+				case ProtocolInfo::CHUNK_DATA_PACKET:
 					$data = new ChunkDataPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_EQUIPMENT_PACKET:
+				case ProtocolInfo::PLAYER_EQUIPMENT_PACKET:
 					$data = new PlayerEquipmentPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_ARMOR_EQUIPMENT_PACKET:
+				case ProtocolInfo::PLAYER_ARMOR_EQUIPMENT_PACKET:
 					$data = new PlayerArmorEquipmentPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::INTERACT_PACKET:
+				case ProtocolInfo::INTERACT_PACKET:
 					$data = new InteractPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::USE_ITEM_PACKET:
+				case ProtocolInfo::USE_ITEM_PACKET:
 					$data = new UseItemPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_ACTION_PACKET:
+				case ProtocolInfo::PLAYER_ACTION_PACKET:
 					$data = new PlayerActionPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::HURT_ARMOR_PACKET:
+				case ProtocolInfo::HURT_ARMOR_PACKET:
 					$data = new HurtArmorPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_DATA_PACKET:
+				case ProtocolInfo::SET_ENTITY_DATA_PACKET:
 					$data = new SetEntityDataPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_MOTION_PACKET:
+				case ProtocolInfo::SET_ENTITY_MOTION_PACKET:
 					$data = new SetEntityMotionPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_HEALTH_PACKET:
+				case ProtocolInfo::SET_HEALTH_PACKET:
 					$data = new SetHealthPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_SPAWN_POSITION_PACKET:
+				case ProtocolInfo::SET_SPAWN_POSITION_PACKET:
 					$data = new SetSpawnPositionPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ANIMATE_PACKET:
+				case ProtocolInfo::ANIMATE_PACKET:
 					$data = new AnimatePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::RESPAWN_PACKET:
+				case ProtocolInfo::RESPAWN_PACKET:
 					$data = new RespawnPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SEND_INVENTORY_PACKET:
+				case ProtocolInfo::SEND_INVENTORY_PACKET:
 					$data = new SendInventoryPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::DROP_ITEM_PACKET:
+				case ProtocolInfo::DROP_ITEM_PACKET:
 					$data = new DropItemPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_OPEN_PACKET:
+				case ProtocolInfo::CONTAINER_OPEN_PACKET:
 					$data = new ContainerOpenPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_CLOSE_PACKET:
+				case ProtocolInfo::CONTAINER_CLOSE_PACKET:
 					$data = new ContainerClosePacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_SLOT_PACKET:
+				case ProtocolInfo::CONTAINER_SET_SLOT_PACKET:
 					$data = new ContainerSetSlotPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_DATA_PACKET:
+				case ProtocolInfo::CONTAINER_SET_DATA_PACKET:
 					$data = new ContainerSetDataPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_SET_CONTENT_PACKET:
+				case ProtocolInfo::CONTAINER_SET_CONTENT_PACKET:
 					$data = new ContainerSetContentPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::CHAT_PACKET:
+				case ProtocolInfo::CHAT_PACKET:
 					$data = new ChatPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ADVENTURE_SETTINGS_PACKET:
+				case ProtocolInfo::ADVENTURE_SETTINGS_PACKET:
 					$data = new AdventureSettingsPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::ENTITY_DATA_PACKET:
+				case ProtocolInfo::ENTITY_DATA_PACKET:
 					$data = new EntityDataPacket;
 					break;
-				case ProtocolInfo::getCurrentProtocolInfo()::SET_ENTITY_LINK_PACKET:
+				case ProtocolInfo::SET_ENTITY_LINK_PACKET:
 					$data = new SetEntityLinkPacket;
-				case ProtocolInfo::getCurrentProtocolInfo()::PLAYER_INPUT_PACKET:
+				case ProtocolInfo::PLAYER_INPUT_PACKET:
 					$data = new PlayerInputPacket;
 					break;
 				default:

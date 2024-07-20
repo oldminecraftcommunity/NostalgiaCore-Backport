@@ -77,7 +77,7 @@ function require_all($path, &$count = 0){
 	while(false !== ($file = $dir->read())){
 		if($file !== "." and $file !== ".."){
 			if(!is_dir($path . $file) and strtolower(substr($file, -3)) === "php"){
-				require_once($path . $file);
+				if(!str_starts_with($file, "_NOINC_")) require_once($path . $file);
 				++$count;
 			}elseif(is_dir($path . $file)){
 				$dirs[] = $path . $file . "/";

@@ -4,7 +4,7 @@ class PingPacket extends RakNetDataPacket{
 	public $time = 0;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::PING_PACKET;
+		return ProtocolInfo::PING_PACKET;
 	}
 	
 	public function decode(){

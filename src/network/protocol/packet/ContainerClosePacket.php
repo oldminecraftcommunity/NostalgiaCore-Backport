@@ -4,7 +4,7 @@ class ContainerClosePacket extends RakNetDataPacket{
 	public $windowid;
 	
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::CONTAINER_CLOSE_PACKET;
+		return ProtocolInfo::CONTAINER_CLOSE_PACKET;
 	}
 	
 	public function decode(){

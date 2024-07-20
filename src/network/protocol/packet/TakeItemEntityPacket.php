@@ -5,7 +5,7 @@ class TakeItemEntityPacket extends RakNetDataPacket{
 	public $eid;
 
 	public function pid(){
-		return ProtocolInfo::getCurrentProtocolInfo()::TAKE_ITEM_ENTITY_PACKET;
+		return ProtocolInfo::TAKE_ITEM_ENTITY_PACKET;
 	}
 	
 	public function decode(){

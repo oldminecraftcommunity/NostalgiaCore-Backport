@@ -8,7 +8,7 @@ class PlayerInputPacket extends RakNetDataPacket{
 
 	public function pid()
 	{
-		return ProtocolInfo::getCurrentProtocolInfo()::PLAYER_INPUT_PACKET;
+		return ProtocolInfo::PLAYER_INPUT_PACKET;
 	}
 
 	public function decode()

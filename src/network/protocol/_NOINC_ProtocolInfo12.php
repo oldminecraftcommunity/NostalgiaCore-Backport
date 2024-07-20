@@ -1,6 +1,8 @@
 <?php
-
-class ProtocolInfo12 extends ProtocolInfo {
+class ProtocolInfo{
+	
+	public static $CURRENT_PROTOCOL;
+	
     const PING_PACKET = 0x00;
 
 	const PONG_PACKET = 0x03;
