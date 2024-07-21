@@ -86,6 +86,7 @@ class ServerAPI{
 	public function load(){
 		if(!file_exists(DATA_PATH . "worlds/")){
 			mkdir(DATA_PATH . "worlds/", 0777);
+
 		}
 
 		if(!file_exists(DATA_PATH . "players/")){
@@ -103,7 +104,7 @@ class ServerAPI{
 			}
 		}
 
-		console("[INFO] Starting Minecraft PE server version " . FORMAT_AQUA . CURRENT_MINECRAFT_VERSION);
+		console("[INFO] Starting Minecraft PE server");
 
 		console("[INFO] Loading properties...");
 		$this->config = new Config(DATA_PATH . "server.properties", CONFIG_PROPERTIES, [
@@ -142,6 +143,7 @@ class ServerAPI{
 		if(!Entity::$allowFly){
 			ConsoleAPI::warn("Fly checking is enabled! Players may experience issues with kicking while not flying!");
 		}
+
 		$this->parseProperties();
 		MobSpawner::$MOB_LIMIT = $this->getProperty("mobs-amount", 50);
 		Entity::$allowedAI = $this->getProperty("enable-mob-ai", true);

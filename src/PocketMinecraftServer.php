@@ -106,6 +106,13 @@ class PocketMinecraftServer{
 		NetherReactorBlock::$enableReactor = $this->extraprops->get("enable-nether-reactor");
 		$proto = (int) $this->extraprops->get("protocol");
 		
+		define("CURRENT_MINECRAFT_VERSION", match($proto){
+			14 => "v0.8.1 alpha",
+			12 => "v0.7.6 alpha",
+			default => "vx.x.x unknown"
+		});
+
+		console("[INFO] Running for version " . FORMAT_AQUA . CURRENT_MINECRAFT_VERSION);
 		$_tmp = fopen(FILE_PATH."/_ProtocolInfo_gen.php", "w");
 		$paste = fopen(FILE_PATH."/src/network/protocol/_NOINC_ProtocolInfo$proto.php", "r");
 		fwrite($_tmp, stream_get_contents($paste));
