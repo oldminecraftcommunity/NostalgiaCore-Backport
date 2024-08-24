@@ -92,8 +92,10 @@ class PocketMinecraftServer{
 			"force-20-tps" => false,
 			"enable-mob-pushing" => Living::$entityPushing,
 			"keep-chunks-loaded" => self::$KEEP_CHUNKS_LOADED,
-			"protocol" => 14
+			"protocol" => 14,
+			"use-experimental-hotbar" => Player::$experimentalHotbar,
 		]);
+		Player::$experimentalHotbar = $this->extraprops->get("use-experimental-hotbar");
 		Player::$smallChunks = $this->extraprops->get("16x16x16_chunk_sending");
 		Living::$despawnMobs = $this->extraprops->get("despawn-mobs");
 		Living::$despawnTimer = $this->extraprops->get("mob-despawn-ticks");
@@ -111,7 +113,9 @@ class PocketMinecraftServer{
 			12 => "v0.7.6 alpha",
 			default => "vx.x.x unknown"
 		});
-
+			if($proto <= 12){
+				Player::$experimentalHotbar = false; //force disable: 0.7 has same hotbar as old nc
+			}
 		console("[INFO] Running for version " . FORMAT_AQUA . CURRENT_MINECRAFT_VERSION);
 		$_tmp = fopen(FILE_PATH."/_ProtocolInfo_gen.php", "w");
 		$paste = fopen(FILE_PATH."/src/network/protocol/_NOINC_ProtocolInfo$proto.php", "r");
