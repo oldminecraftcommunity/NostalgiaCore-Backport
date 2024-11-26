@@ -2278,6 +2278,12 @@ class Player{
 				if($this->spawned === false or $this->blocked === true){
 					break;
 				}
+				
+				if($this->gamemode & 0x01 == 1){
+					ConsoleAPI::warn("{$this->iusername} tried dropping item while in creative!");
+					return;
+				}
+				
 				$packet->eid = $this->eid;
 				$prevItem = $packet->item;
 				$packet->item = $this->getSlot($this->slot);
