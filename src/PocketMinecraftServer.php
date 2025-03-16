@@ -113,6 +113,7 @@ class PocketMinecraftServer{
 		define("CURRENT_MINECRAFT_VERSION", match($proto){
 			14 => "v0.8.1 alpha",
 			12 => "v0.7.6 alpha",
+			9 => "v0.6.1 alpha",
 			default => "vx.x.x unknown"
 		});
 			if($proto <= 12){
