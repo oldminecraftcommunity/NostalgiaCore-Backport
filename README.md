@@ -1,14 +1,13 @@
 ![](https://kotyara.nekoweb.org/images/nostalgiacore.png)
 
-# NostalgiaCore
+# NostalgiaCore-Backport
 
-NostalgiaCore is a fork of Legacy PocketMine-MP 1.3.12, which fixes bugs of Legacy PocketMine-MP, and adds new content
-
-Supported MCPE versions: 0.8.0, 0.8.1 (maybe 0.8.2)
+NostalgiaCore-Backport is a fork of NostalgiaCore that adds support for older protocols.
+Supported MCPE versions: 0.7.4-0.7.6(protocol 12), 0.8.1(protocol 14)
 
 (Special thx to GullCraft Network and DartMiner43)
 
-<h2> Why should you use NostalgiaCore to run a Minecraft Pocket Edition 0.8.1 server?</h2>
+<h2> Why should you use NostalgiaCore to run a Minecraft Pocket Edition server?</h2>
 
 • Items are dropping normally.
 
