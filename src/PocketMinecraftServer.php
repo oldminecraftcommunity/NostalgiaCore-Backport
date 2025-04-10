@@ -115,9 +115,9 @@ class PocketMinecraftServer{
 			12 => "v0.7.6 alpha",
 			default => "vx.x.x unknown"
 		});
-			if($proto <= 12){
-				Player::$experimentalHotbar = false; //force disable: 0.7 has same hotbar as old nc
-			}
+		if($proto <= 12){
+			Player::$experimentalHotbar = false; //force disable: 0.7 has same hotbar as old nc
+		}
 		console("[INFO] Running for version " . FORMAT_AQUA . CURRENT_MINECRAFT_VERSION);
 		$_tmp = fopen(FILE_PATH."/_ProtocolInfo_gen.php", "w");
 		$paste = fopen(FILE_PATH."/src/network/protocol/_NOINC_ProtocolInfo$proto.php", "r");
