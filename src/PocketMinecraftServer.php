@@ -118,6 +118,10 @@ class PocketMinecraftServer{
 		if($proto <= 12){
 			Player::$experimentalHotbar = false; //force disable: 0.7 has same hotbar as old nc
 		}
+		if($proto > 12){ //0.8+: removed 254 & 253
+			unset(Block::$class[GRASS_CARRIED]);
+			unset(Block::$class[LEAVES_CARRIED]);
+		}
 		console("[INFO] Running for version " . FORMAT_AQUA . CURRENT_MINECRAFT_VERSION);
 		$_tmp = fopen(FILE_PATH."/_ProtocolInfo_gen.php", "w");
 		$paste = fopen(FILE_PATH."/src/network/protocol/_NOINC_ProtocolInfo$proto.php", "r");
