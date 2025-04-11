@@ -1524,7 +1524,7 @@ class Player{
 		if(EventHandler::callEvent(new DataPacketReceiveEvent($this, $packet)) === BaseEvent::DENY){
 			return;
 		}
-		
+
 		switch($packet->pid()){
 			case 0x01:
 				break;
@@ -2493,6 +2493,7 @@ class Player{
 						$this->dataPacket($pk);
 						break;
 					}
+					
 					if($item->getID() !== AIR and $slot->getID() == $item->getID()){
 						if($slot->count < $item->count){
 							if($this->removeItem($item->getID(), $item->getMetadata(), $item->count - $slot->count, false) === false){
@@ -2733,7 +2734,7 @@ class Player{
 				$s = $this->getSlot($slot);
 				if($s->count <= 0 or $s->getID() === AIR){
 					$this->setSlot($slot, BlockAPI::getItem($item->getID(), $item->getMetadata(), $item->count), false);
-				}else if($s->getID() == $item->getID() && $s->getMetadata() == $item->getMetadata() && ($s->count + $item->count) <= $s->maxStackSize){
+				}else if($s->getID() == $item->getID() && $s->getMetadata() == $item->getMetadata() && ($s->count + $item->count) <= $s->getMaxStackSize()){
 					$this->setSlot($slot, BlockAPI::getItem($item->getID(), $item->getMetadata(), $s->count + $item->count), false);
 				}else{
 					$f1 = 0.3;
