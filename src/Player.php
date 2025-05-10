@@ -1973,6 +1973,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$packet->eid = $this->eid;
 				$data = [];
 				$data["eid"] = $packet->eid;
@@ -2099,7 +2100,8 @@ class Player{
 				$packet->eid = $this->eid;
 				$this->craftingItems = [];
 				$this->toCraft = [];
-
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
+				
 				switch($packet->action){
 					case 5: //Shot arrow
 						if($this->entity->inAction){
@@ -2180,6 +2182,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$this->server->api->block->playerBlockBreak($this, $blockVector);
 				break;
 			case ProtocolInfo::PLAYER_ARMOR_EQUIPMENT_PACKET:
@@ -2188,7 +2191,8 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
-
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
+				
 				$packet->eid = $this->eid;
 				for($i = 0; $i < 4; ++$i){
 					$s = $packet->slots[$i];
@@ -2232,6 +2236,7 @@ class Player{
 				$data["action"] = $packet->action;
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$target = $this->server->api->entity->get($packet->target);
 				if($target instanceof Entity and $this->entity instanceof Entity and $this->gamemode !== VIEW and $this->blocked === false and ($target instanceof Entity) and $this->entity->distance($target) <= 8){
 					$data["targetentity"] = $packet->target;
@@ -2259,6 +2264,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				
 				$this->checkSpawnPosition();
 				$this->teleport($this->spawnPosition, false, false, true, false);
@@ -2297,6 +2303,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$packet->eid = $this->eid;
 				if($this->entity->inAction === true){
 					$this->entity->inAction = false;
@@ -2357,6 +2364,7 @@ class Player{
 				
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$data["eid"] = $packet->eid;
 				$data["unknown"] = $packet->unknown;
 				$data["item"] = $packet->item;
@@ -2389,6 +2397,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				if(trim($packet->message) != "" and strlen($packet->message) <= 255){
 					$message = $packet->message;
 					if($message[0] === "/"){ //Command
@@ -2426,6 +2435,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				if(isset($this->windows[$packet->windowid])){
 					if(is_array($this->windows[$packet->windowid])){
 						foreach($this->windows[$packet->windowid] as $ob){
@@ -2482,6 +2492,7 @@ class Player{
 				}else{
 					$this->toCraft = [];
 					$this->craftingItems = [];
+					$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				}
 				if(!isset($this->windows[$packet->windowid])){
 					break;
@@ -2595,6 +2606,7 @@ class Player{
 				}
 				$this->craftingItems = [];
 				$this->toCraft = [];
+				$this->craftingType = CraftingRecipes::TYPE_INVENTORY;
 				$t = $this->server->api->tile->get(new Position($packet->x, $packet->y, $packet->z, $this->level));
 				if(($t instanceof Tile) and $t->class === TILE_SIGN){
 					if($t->data["creator"] !== $this->username){
