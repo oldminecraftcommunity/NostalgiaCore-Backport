@@ -2296,7 +2296,6 @@ class Player{
 				
 				$this->checkSpawnPosition();
 				$this->teleport($this->spawnPosition, false, false, true, false);
-				
 				$pk = new MovePlayerPacket();
 				$pk->eid = $this->entity->eid;
 				$pk->x = $this->entity->x;
