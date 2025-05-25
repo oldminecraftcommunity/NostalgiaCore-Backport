@@ -6,6 +6,7 @@ class Player{
 	
 	public static $experimentalHotbar = false;
 	public static $allowDroppingSingleItems = true;
+	public static $disableEmojisInChat = true;
 	/** @var Config */
 	public $data;
 	/** @var Entity */
@@ -2500,7 +2501,7 @@ class Player{
 						$this->server->api->console->run(substr($message, 1), $this);
 					}else{
 						$data = ["player" => $this, "message" => $message];
-						if(Utils::hasEmoji($data["message"])){
+						if(Player::$disableEmojisInChat && Utils::hasEmoji($data["message"])){
 							$this->sendChat("Your message contains illegal characters");
 							break;
 						}
@@ -2710,6 +2711,7 @@ class Player{
 						if($d["id"] !== TILE_SIGN){
 							$t->spawn($this);
 						}else{
+							
 							$t->setText($d["Text1"], $d["Text2"], $d["Text3"], $d["Text4"]);
 						}
 					}
