@@ -2636,7 +2636,6 @@ class Player{
 					if($slot->getID() == $citem->getID() && $slot->getMetadata() == $citem->getMetadata()){
 						
 						if($citem->count > $slot->count){ //item added, result
-							console("{$citem->count} {$slot->count}");
 							$this->addCraftingResult($packet->slot, $slot->getID(), $slot->getMetadata(), $citem->count - $slot->count);
 						}else if($citem->count < $slot->count){ //item removed, ingridient
 							$this->addCraftingIngridient($packet->slot, $slot->getID(), $slot->getMetadata(), $slot->count - $citem->count);
@@ -2968,7 +2967,7 @@ class Player{
 		if(!isset($this->toCraft[$index][$slot])) $this->toCraft[$index][$slot] = 0;
 		$this->toCraft[$index][$slot] += $count;
 		
-		console("Result: $id, $meta, $count into $slot");
+		//console("Result: $id, $meta, $count into $slot");
 		if($this->tryCraft() === false){
 			$this->sendInventory();
 		}
