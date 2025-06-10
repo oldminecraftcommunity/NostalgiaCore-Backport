@@ -9,21 +9,23 @@ Supported MCPE versions: 0.7.4-0.7.6(protocol 12), 0.8.1(protocol 14)
 
 <h2> Why should you use NostalgiaCore to run a Minecraft Pocket Edition server?</h2>
 
+• PHP 8 Support, PHAR plugins and API Bump to 12.2
+
+• Crafting system was rewritten to hopefully have less problems
+
 • Items are dropping normally.
 
-• Dupes, that were in PocketMine by mistake are fixed.
-
 • Player hotbar is saved.
+
+• Working Nether Reactor.
+
+• Mob AI
+
+• Dupes, that were in PocketMine by mistake are fixed.
 
 • Extra options (like in-game messages to discord)
 
 • Vector2 is fixed.
-
-• Working Nether Reactor.
-
-• PHAR plugins support
-
-• Mob AI
 
 ...and etc.
 
