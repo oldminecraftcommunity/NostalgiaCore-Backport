@@ -136,12 +136,18 @@ abstract class Block extends Position{
 		
 		RESERVED6 => "Reserved6Block",
 	);
+	
+	/**
+	 * @var Material
+	 */
+	public $material;
+	
 	public $id;
 	public $meta;
 	public $name;
-	public $breakTime;
 	public $boundingBox;
 	public $hardness;
+	public $breakTime = 0;
 	public $isActivable = false;
 	public $breakable = true;
 	public $isFlowable = false;
@@ -262,6 +268,17 @@ abstract class Block extends Position{
 		return $this->meta & 0x0F;
 	}
 	
+	public function getDestroyProgress(Player $player){
+		if($this->breakTime < 0) return 0;
+		$id = $this->getID();
+		$meta = $this->getMetadata();
+		if($player->canDestroy($id, $meta)){
+			return $player->getDestroySpeed($id, $meta) / $this->breakTime / 30;
+		}
+		if($this->breakTime == 0) return INF; //instabreak
+		return (1 / $this->breakTime) / 100;
+	}
+	
 	final public function position(Position $v){
 		$this->level = $v->level;
 		$this->x = (int) $v->x;
@@ -281,9 +298,11 @@ abstract class Block extends Position{
 	}
 	
 	public function getBreakTime(Item $item, Player $player){
+		if($this->hardness < 0) return INF;
 		if(($player->gamemode & 0x01) === 0x01){
 			return 0.15;
 		}
+		if($player->canDestroy($this->getID(), $this->getMetadata()))
 		return $this->breakTime;
 	}
 	
@@ -299,7 +318,9 @@ abstract class Block extends Position{
 		return "Block ". $this->name ." (".$this->id.":".$this->meta.")";
 	}
 	
-	abstract function isBreakable(Item $item, Player $player);
+	public function isBreakable(Item $item, Player $player){
+		return $this->hardness >= 0;
+	}
 	
 	abstract function onBreak(Item $item, Player $player);
 	
