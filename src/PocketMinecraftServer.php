@@ -107,6 +107,12 @@ class PocketMinecraftServer{
 			"enable-light-updates" => self::$ENABLE_LIGHT_UPDATES,
 			"min-block-breaking-progress" => self::$BLOCK_BREAKING_PROGRESS,
 		], comments: [
+			"protocol" => [
+				"Change server version",
+				"14 - MCPE 0.8.1",
+				"12 - MCPE 0.7.6",
+				"Other protocols are currently not supported!"
+			],
 			"min-block-breaking-progress" => [
 				"Affects how strict block breaking speed check is.",
 				"0 - allow blocks to be mined instantly",
