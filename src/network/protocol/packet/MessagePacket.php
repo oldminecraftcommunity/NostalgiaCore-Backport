@@ -9,13 +9,20 @@ class MessagePacket extends RakNetDataPacket{
 	}
 	
 	public function decode(){
-		$this->source = $this->getString();
+		if(ProtocolInfo::$CURRENT_PROTOCOL > 11){
+			$this->source = $this->getString();
+		}else{
+			$this->source = "";
+		}
+		
 		$this->message = $this->getString();
 	}	
 	
 	public function encode(){
 		$this->reset();
-		$this->putString($this->source);
+		if(ProtocolInfo::$CURRENT_PROTOCOL > 11){
+			$this->putString($this->source);
+		}
 		$this->putString($this->message);
 	}
 

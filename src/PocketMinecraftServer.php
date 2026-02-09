@@ -114,6 +114,7 @@ class PocketMinecraftServer{
 				"Change server version",
 				"14 - MCPE 0.8.1",
 				"12 - MCPE 0.7.6",
+				"11 - MCPE 0.7.2 (WIP)",
 				"Other protocols are currently not supported!"
 			],
 			"min-block-breaking-progress" => [
@@ -170,10 +171,14 @@ class PocketMinecraftServer{
 		define("CURRENT_MINECRAFT_VERSION", match($proto){
 			14 => "v0.8.1 alpha",
 			12 => "v0.7.6 alpha",
+			11 => "v0.7.2 alpha",
 			default => "vx.x.x unknown"
 		});
 		if($proto <= 12){
 			Player::$experimentalHotbar = false; //force disable: 0.7 has same hotbar as old nc
+		}
+		if($proto == 11){
+			ConsoleAPI::warn("MCPE v0.7.2 compat is still in development and may not be perfect!");
 		}
 		if($proto > 12){ //0.8+: removed 254 & 253
 			unset(Block::$class[GRASS_CARRIED]);

@@ -14,7 +14,14 @@ class EntityDataPacket extends RakNetDataPacket{
 		$this->x = $this->getShort();
 		$this->y = $this->getByte();
 		$this->z = $this->getShort();
-		$this->namedtag = $this->get(true);
+		if(ProtocolInfo::$CURRENT_PROTOCOL <= 11) {
+			$this->line1 = $this->getString();
+			$this->line2 = $this->getString();
+			$this->line3 = $this->getString();
+			$this->line4 = $this->getString();
+		}else{
+			$this->namedtag = $this->get(true);
+		}
 	}
 	
 	public function encode(){
@@ -22,7 +29,14 @@ class EntityDataPacket extends RakNetDataPacket{
 		$this->putShort($this->x);
 		$this->putByte($this->y);
 		$this->putShort($this->z);
-		$this->put($this->namedtag);
+		if(ProtocolInfo::$CURRENT_PROTOCOL <= 11) {
+			$this->putString($this->line1);
+			$this->putString($this->line2);
+			$this->putString($this->line3);
+			$this->putString($this->line4);
+		}else{
+			$this->put($this->namedtag);
+		}
 	}
 
 }
