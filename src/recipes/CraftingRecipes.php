@@ -14,9 +14,6 @@ class CraftingRecipes{
 		"SNOWBALL:?x4=>SNOW_BLOCK:0x1",
 		"WOODEN_PLANKS:?x2=>STICK:0x4",
 		"COBBLESTONE:?x4=>STONECUTTER:0x1",
-		"WOOD:0x1=>WOODEN_PLANKS:0x4",
-		"WOOD:1x1=>WOODEN_PLANKS:1x4",
-		"WOOD:2x1=>WOODEN_PLANKS:2x4",
 		// "WOOD:3x1=>WOODEN_PLANKS:3x4",
 		"WOOL:0x1,DYE:0x1=>WOOL:15x1",
 		"WOOL:0x1,DYE:1x1=>WOOL:14x1",
@@ -211,7 +208,19 @@ class CraftingRecipes{
 	
 	
 	public static function init(){
-		
+		if(ProtocolInfo::$CURRENT_PROTOCOL <= 12){ //0.7.6 & below
+			$wood = ["WOOD:0x1=>WOODEN_PLANKS:0x4", "WOOD:1x1=>WOODEN_PLANKS:0x4", "WOOD:2x1=>WOODEN_PLANKS:0x4"];
+			foreach($wood as $recipe){
+				CraftingRecipes::addRecipe($recipe, self::TYPE_INVENTORY);
+				CraftingRecipes::addRecipe($recipe, self::TYPE_CRAFTIGTABLE);
+			}
+		}else{
+			$wood = ["WOOD:0x1=>WOODEN_PLANKS:0x4", "WOOD:1x1=>WOODEN_PLANKS:1x4", "WOOD:2x1=>WOODEN_PLANKS:2x4"];
+			foreach($wood as $recipe){
+				CraftingRecipes::addRecipe($recipe, self::TYPE_INVENTORY);
+				CraftingRecipes::addRecipe($recipe, self::TYPE_CRAFTIGTABLE);
+			}
+		}
 		foreach(CraftingRecipes::$small as $recipe){
 			CraftingRecipes::addRecipe($recipe, self::TYPE_INVENTORY);
 			CraftingRecipes::addRecipe($recipe, self::TYPE_CRAFTIGTABLE);
