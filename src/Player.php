@@ -1626,6 +1626,7 @@ class Player{
 				}
 				$pk->slots = $this->inventory;
 			}else{
+				
 				$pk->slots = [];
 				for($i = 0; $i < 9; ++$i){
 					if(!isset($this->hotbar[$i])) [$id, $meta] = [0, 0];
@@ -1635,9 +1636,12 @@ class Player{
 				$hotbar = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 				
 			}
-			$pk->hotbar = $hotbar;
-			$this->dataPacket($pk);
-			
+			//this breaks creative mode in 0.7.6 and below - TODO fix later if possible?
+			if(ProtocolInfo::$CURRENT_PROTOCOL > 12){
+				$pk->hotbar = $hotbar;
+				$this->dataPacket($pk);
+			}
+
 			$this->sendingInventoryRequired = false;
 		}
 		
