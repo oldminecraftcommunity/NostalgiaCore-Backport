@@ -223,7 +223,7 @@ class Player{
 		$this->chatMessagesQueue->data = [];
 		
 		//$this->server->schedule(20 * 60, [$this, "clearQueue"], [], true);
-		
+		$this->server->interface->maxACKsAllowed["{$this->ip}:{$this->port}"] = 0;
 		$this->evid[] = $this->server->event("server.close", [$this, "close"]);
 		console("[DEBUG] New Session started with $ip:$port. MTU {$this->MTU}, Client ID {$this->clientID}", true, true, 2);
 	}
@@ -2024,6 +2024,10 @@ class Player{
 			unset($this->server->api->chat->lastTells[$this->iusername]);
 			//$this->entity->close();
 		}
+	}
+	
+	public function __destruct(){ //pwease dont leak memory >_<
+		unset($this->server->interface->maxACKsAllowed["{$this->ip}:{$this->port}"]);
 	}
 
 	public function save(){
