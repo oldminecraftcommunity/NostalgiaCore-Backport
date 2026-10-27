@@ -3575,8 +3575,10 @@ class Player{
 					foreach($packet->packets as $count){
 						if(isset($this->packetAlwaysRecoverQueue[$count])){
 							$this->resendQueue[$count] = $this->packetAlwaysRecoverQueue[$count];
+							$this->resendQueue[$count]->incrementAllowedAck = false;
 						}else if(isset($this->recoveryQueue[$count])){
 							$this->resendQueue[$count] =& $this->recoveryQueue[$count];
+							$this->resendQueue[$count]->incrementAllowedAck = false;
 							$this->lag[] = $time - $this->recoveryQueue[$count]->sendtime;
 							unset($this->recoveryQueue[$count]);
 						}else{ //lost and wont be recovered
@@ -3596,8 +3598,8 @@ class Player{
 						}else if(isset($this->recoveryQueue[$count])){
 							$this->lag[] = $time - $this->recoveryQueue[$count]->sendtime;
 							unset($this->recoveryQueue[$count]);
-							unset($this->resendQueue[$count]);
 						}
+						unset($this->resendQueue[$count]);
 						++$this->packetStats[0];
 					}
 					break;
